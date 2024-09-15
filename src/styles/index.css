@@ -1,3 +1,12 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+body {
+  background: #000;
+}
+
+.active {
+  background: #52ff4f;
+  color: #000;
+}
