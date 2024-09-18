@@ -31,13 +31,13 @@ export default function Architecture() {
   return (
     <div className="wrap px-8 py-16 relative overflow-clip" id="architecture">
       <div className="header">
-        <h1 className="relative z-10 text-2xl font-semibold text-primary-green">
+        <h1 className="relative z-10 text-2xl font-semibold text-primary-green text-center mb-5">
           Architecture
         </h1>
       </div>
 
-      <div className="grid relative z-10 lg:grid-cols-2 gap-10">
-        <div className="wrap rounded-2xl bg-secondary-light py-5 relative">
+      <div className="flex relative z-10 lg:grid-cols-2 gap-10 justify-center  ">
+        <div className="wrap rounded-2xl bg-secondary-light py-5 relative lg:w-[60%]">
           <img
             src="/asset/rounder.png"
             alt="rounder"
@@ -59,7 +59,9 @@ export default function Architecture() {
                     <span>{i.title2}</span>
                   </p>
                 </div>
-                <p className="text-xs">{i.description}</p>
+                <p className="text-xs text-white text-opacity-60">
+                  {i.description}
+                </p>
               </div>
             ))}
           </div>

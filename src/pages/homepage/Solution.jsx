@@ -30,7 +30,7 @@ function Solution() {
   ];
 
   return (
-    <section className="px-8 py-16 bg-black text-white relative" id="solution">
+    <section className="px-8 py-16 text-white relative" id="solution">
       <div className="mb-10">
         <h3 className="text-4xl font-bold text-[#52FF4F]">Solpass Solution </h3>
       </div>

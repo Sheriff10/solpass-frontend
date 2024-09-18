@@ -15,7 +15,7 @@ export default function FaqCard({ answer, question }) {
       )}
       <div className="bg-con relative z-10 backdrop-blur-3xl  p-5 bg-white bg-opacity-5">
         <div className="header flex justify-between items-center">
-          <h1 className="font-semibold text-lg">{question}</h1>
+          <h1 className="font-semibold text-md">{question}</h1>
           <span
             onClick={() => setShow(!show)}
             className="text-primary-green p-2"
@@ -24,7 +24,7 @@ export default function FaqCard({ answer, question }) {
           </span>
         </div>
 
-        {show && <p className="text-white opacity-80 text-sm mt-3">{answer}</p>}
+        {show && <p className="text-white opacity-70 text-sm mt-3">{answer}</p>}
       </div>
     </div>
   );

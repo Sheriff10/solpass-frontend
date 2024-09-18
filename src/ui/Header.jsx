@@ -67,14 +67,14 @@ const Header = () => {
 
         <nav className="flex flex-col gap-6 mt-0 pt-8 px-5 text-lg bg-black">
           {pages.map((i, index) => (
-            <NavLink
-              to={i.path}
+            <a
+              href={i.path}
               key={index}
               className="hover:text-gray-300 transition-colors duration-200"
               onClick={toggleMobileMenu} // Close menu on click
             >
               {i.page}
-            </NavLink>
+            </a>
           ))}
         </nav>
 

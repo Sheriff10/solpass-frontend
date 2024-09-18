@@ -8,14 +8,14 @@ import {
 
 export default function UseCases() {
   return (
-    <section className="px-8 py-16 bg-black text-white" id="usecase">
+    <section className="px-8 py-16 text-white" id="usecase ">
       <div className="">
-        <h3 className="text-4xl font-bold text-[#52FF4F] text-center">
+        <h3 className="text-4xl font-bold text-[#52FF4F] text-center mb-10">
           <span className="text-white">Use</span> Cases{" "}
         </h3>
       </div>
       <SolPassUses />
-      <div className="w-full bg-[#52FF4F] rounded-xl py-20 flex flex-col justify-center items-center relative mt-5">
+      <div className="w-full bg-[#52FF4F] rounded-xl py-20 flex flex-col justify-center items-center relative mt-10">
         <img
           src={"/logo.png"}
           alt="name"
