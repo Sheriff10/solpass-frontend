@@ -25,7 +25,7 @@ export default function KeyTable({ data }) {
             <td className="min-w-[150px]">25th Jan. 2024</td>
             <td>
               <div className="flex justify-center">
-                <FaTrashAlt />
+                <FaTrashAlt className="text-red-500" />
               </div>
             </td>
           </tr>

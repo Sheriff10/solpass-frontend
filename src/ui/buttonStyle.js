@@ -9,3 +9,6 @@ export const greenIconBtnSmClass =
 
 export const grayBtnSmClass =
   "px-3 py-2  bg-[#1B1B1B] text-sm rounded-lg text-gray-400";
+
+export const whiteBtnSmClass =
+  "px-3 py-2  bg-white text-sm rounded-lg text-black";

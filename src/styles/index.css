@@ -2,12 +2,44 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@font-face {
+  font-family: "poppins";
+  src: url("/public/fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "poppins-bold";
+  src: url("/public/fonts/Poppins-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "poppins-medium";
+  src: url("/public/fonts/Poppins-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   background: #000;
   color: #fff;
+  font-family: "poppins";
 }
 
 .active {
   background: #52ff4f;
   color: #000;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.font-bold {
+  font-family: "poppins-bold";
+}
+
+.font-semibold {
+  font-family: "poppins-medium";
 }
