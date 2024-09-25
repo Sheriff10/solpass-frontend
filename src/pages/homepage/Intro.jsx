@@ -1,7 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { greenBtnSmClass } from "../../ui/buttonStyle";
-
+import {
+  useWalletModal,
+  WalletMultiButton,
+} from "@solana/wallet-adapter-react-ui";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { useMutation } from "@tanstack/react-query";
+import { loginAdress } from "../../services/api-service";
+import Loader from "../../ui/Loader";
+import { useNavigate } from "react-router-dom";
+import { setCookie } from "../../utils/cookies";
 export default function Intro() {
+  const { setVisible } = useWalletModal();
+  const { publicKey, connected, disconnect } = useWallet();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (connected && publicKey) {
+      authorize();
+    }
+  }, [connected, publicKey]);
+
+  const authorize = async () => {
+    try {
+      console.log(`Public Key: ${publicKey.toString()}`);
+      const response = await loginAdress(publicKey.toString());
+      console.log("Login Response:", response);
+      setCookie("access-token", response.accessToken);
+      setCookie("address", publicKey.toString());
+      navigate("/user/categories-quest");
+    } catch (error) {
+      console.error("Login error:", error);
+    }
+  };
+
   return (
     <div className="wrap py-56  px-8 relative overflow-clip">
       <img
@@ -20,8 +53,27 @@ export default function Intro() {
           streamline your user experience.
         </p>
 
-        <div className="wrap flex justify-center gap-3 items-center">
-          <button className={greenBtnSmClass}>Connect Wallet</button>
+        <div className="wrap flex justify-center gap-3 items-center relative z-[10] p-4">
+          {connected ? (
+            <WalletMultiButton
+              style={{
+                backgroundColor: "#32CD32", // Customize the background color if needed
+                padding: "8px 12px", // Match your padding
+                borderRadius: "8px", // Ensure rounded corners
+                color: "#fff", // Text color
+                fontSize: "14px",
+                fontFamily: "Poppins",
+              }}
+            />
+          ) : (
+            <button
+              className={greenBtnSmClass}
+              onClick={() => setVisible(true)}
+            >
+              Connect Wallet
+            </button>
+          )}
+
           <img src="/asset/user.png" alt="users" />
           <span className="text-xs text text-white text-opacity-65">
             Verify and start <br /> claiming with people

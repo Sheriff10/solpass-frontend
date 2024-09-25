@@ -1,3 +1,4 @@
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
@@ -40,10 +41,22 @@ export default function UserHeader() {
           </div>
         </div>
 
-        <button className="text-xs bg-primary-green rounded-3xl p-2 px-3 text-black flex gap-2 items-center font-bold">
+        {/* <button className="text-xs bg-primary-green rounded-3xl p-2 px-3 text-black flex gap-2 items-center font-bold">
           <img src="/asset/circle.png" alt="circle" />
           <span>Gk8E....2kLM</span>
-        </button>
+        </button> */}
+
+        <WalletMultiButton
+          startIcon={<img src="/asset/circle.png" alt="circle" />}
+          style={{
+            backgroundColor: "#32CD32", // Customize the background color if needed
+            padding: "6px 12px", // Match your padding
+            borderRadius: "8px", // Ensure rounded corners
+            color: "#fff", // Text color
+            fontSize: "14px",
+            fontFamily: "Poppins",
+          }}
+        />
       </div>
 
       <div className="overflow-x-scroll py-2 md:hidden block">

@@ -1,13 +1,25 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { addressStats } from "../../../services/api-service";
+import { getCookie } from "../../../utils/cookies";
 
-export default function StatsCard() {
+export default function StatsCard({ point, completed_quest, total_quest }) {
+  const address = getCookie("address");
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["address-stats", address],
+    queryFn: async () => await addressStats(address),
+  });
+
   return (
     <div className="wrap">
       <div className="grid lg:grid-cols-2 gap-5  p-8">
         <div className="wrap">
           <p className="text-xl">
             Connect your blockchain-based profiles and assets to prove your
-            identity <span>10/25</span>
+            identity{" "}
+            <span>
+              {data?.totalCompletedQuest}/{data?.totalQuest}
+            </span>
           </p>
         </div>
 
@@ -21,7 +33,7 @@ export default function StatsCard() {
                   alt="Logo"
                   className="w-[30px] lg:w-[50px]"
                 />
-                <h1 className="text-3xl lg:text-4xl">300</h1>
+                <h1 className="text-3xl lg:text-4xl">{data?.point}</h1>
               </div>
             </div>
 
