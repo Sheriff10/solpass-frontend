@@ -1,0 +1,40 @@
+name: Update Parent Repo with Submodule Change
+
+on:
+  push:
+    branches:
+      - main # Trigger the workflow on changes to the main branch
+
+jobs:
+  update-parent:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout solpass-frontend Repo
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive # Ensure submodules are initialized and updated during checkout
+
+      - name: Set up Git credentials
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Checkout Parent Repo
+        run: |
+          git clone https://x-access-token:${{ secrets.GH_PAT }}@github.com/sheriff10/SOLPASS.git
+          cd SOLPASS
+          git submodule sync  # Sync submodule configuration
+          git submodule update --init --recursive
+          git submodule foreach git pull origin main  # Pull the latest changes
+
+      - name: Commit and Push Changes to Parent Repo
+        run: |
+          cd SOLPASS
+          git add solpass-frontend
+          if ! git diff --cached --exit-code; then
+            git commit -m "Auto-update solpass-frontend submodule"
+            git push origin main
+          else
+            echo "No changes to commit"
+          fi
