@@ -1,6 +1,7 @@
 import apiRequest from "../utils/api-request";
 
-const BASE_URL = "http://127.0.0.1:5000";
+// const BASE_URL = "http://127.0.0.1:5000";
+const BASE_URL = "https://solpass-server.onrender.com";
 
 export const loginAdress = async (address) => {
   const response = await apiRequest(`${BASE_URL}/auth/login`, "POST", {
