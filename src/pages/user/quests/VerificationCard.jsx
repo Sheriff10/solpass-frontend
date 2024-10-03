@@ -16,6 +16,7 @@ import {
 import axios from "axios";
 import StatusHolder from "../../../ui/user/StatusHolder";
 import Loader from "../../../ui/Loader";
+import copyToClipboard from "../../../utils/copy";
 
 export default function VerificationCard({
   verificationLink,
@@ -39,6 +40,7 @@ export default function VerificationCard({
       console.log(response.data.session);
 
       const status = response.data.session.statusV2;
+      // alert(status);
 
       switch (status) {
         case "SESSION_STARTED":
@@ -50,7 +52,7 @@ export default function VerificationCard({
         case "PROOF_GENERATION_STARTED":
           setStatusNumber(3);
           break;
-        case "PROOF_SUBMITTED":
+        case "PROOF_GENERATION_SUCCESS":
           setStatusNumber(4);
           setLoading(true);
           await verifyVerification(statusLink);
@@ -78,7 +80,7 @@ export default function VerificationCard({
     const interval = setInterval(() => {
       // alert("calling");
       handleVerificationStatus();
-    }, 5000);
+    }, 3000);
 
     // Cleanup the interval on component unmount
     return () => clearInterval(interval);
@@ -88,7 +90,7 @@ export default function VerificationCard({
     <Transition.Root show={true} as={Fragment}>
       <Dialog
         className="relative z-[100]"
-        initialFocus={cancelButtonRef}
+        // initialFocus={cancelButtonRef}
         onClose={setOpen}
       >
         <Transition.Child
@@ -143,6 +145,7 @@ export default function VerificationCard({
                             grayBtnSmClass +
                             " flex gap-3 items-center justify-center"
                           }
+                          onClick={() => copyToClipboard(verificationLink)}
                         >
                           <FaCopy /> Copy link
                         </button>

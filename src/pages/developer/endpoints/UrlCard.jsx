@@ -6,8 +6,11 @@ export default function UrlCard({ description, code, example }) {
     <div className="wrap text-gray-200 text-sm">
       <span>
         {description}{" "}
-        <code className="bg-neutral-800 px-2 py-1 text-red-400 rounded-xl">
+        <code className="bg-neutral-800 px-2 py-1 text-red-400 rounded-sm">
           {code}
+        </code>
+        <code className="bg-neutral-800 px-2 py-1 text-green-500 rounded-sm ms-2">
+          GET
         </code>
       </span>{" "}
       <br />

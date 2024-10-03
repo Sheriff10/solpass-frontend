@@ -17,6 +17,8 @@ export default function Intro() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const hasRedirected = localStorage.getItem("hasRedirected");
+    if (hasRedirected) return;
     if (connected && publicKey) {
       authorize();
     }
@@ -29,6 +31,7 @@ export default function Intro() {
       console.log("Login Response:", response);
       setCookie("access-token", response.accessToken);
       setCookie("address", publicKey.toString());
+      localStorage.setItem("hasRedirected", true);
       navigate("/user/categories-quest");
     } catch (error) {
       console.error("Login error:", error);
@@ -43,8 +46,8 @@ export default function Intro() {
         alt="line"
       />
       <div className="flex text-center flex-col gap-10 justify-center items-center lg:w-[60%] mx-auto">
-        <h1 className=" text-4xl lg:text-6xl font-bold">
-          Unlock The Best Of Web3
+        <h1 className=" text-3xl lg:text-5xl font-bold">
+          Solpass: Verifying Humanity, Empowering Trust
         </h1>
 
         <p className="text-white text-sm lg:text-md text-opacity-65">

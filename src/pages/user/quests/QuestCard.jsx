@@ -21,7 +21,7 @@ export default function QuestCard({
   const verificationHandler = async () => {
     try {
       setLoading(true);
-      const data = await verificationLink(address, name);
+      const data = await verificationLink(name);
       setLink(data.requestUrl);
       setStatusLink(data.statusUrl);
       setDescription(name);
@@ -51,7 +51,7 @@ export default function QuestCard({
       <div className="flex flex-col items-center text-center justify-between gap-5 h-full relative">
         <div className="head flex justify-between items-center z-10 w-full gap-3">
           <div className="wrap flex flex-col md:flex-row lg:items-center gap-2 text-">
-            <img src="/logo.png" alt="Quest" className="w-[20px] lg:w-[30px]" />
+            <img src="/logo.png" alt="Quest" className="w-[20px] lg:w-[20px]" />
             <h1>{name}</h1>
           </div>
           <p className="lg:text-sm font-bold text-primary-green absolute lg:relative top-[0px] right-[1px]">

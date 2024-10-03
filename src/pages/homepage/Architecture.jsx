@@ -6,25 +6,24 @@ export default function Architecture() {
       title: "Admission",
       title2: "Solution",
       description:
-        "Users submit their Solana address to Solpass for verification.",
+        "Users connnect their Solana address to Solpass for verification.",
     },
     {
       title: "Verification",
       title2: "Via Reclaim",
-      description:
-        "Users complete biometric and social media verifications via Reclaim.",
+      description: "Users complete quests verifications via Reclaim.",
     },
     {
       title: "Identity",
       title2: "Scoring",
       description:
-        "Verified users receive a score stored in their Solana account.",
+        "Verified users  receive a score for the connnected address.",
     },
     {
-      title: "SDK/API",
+      title: "API",
       title2: "Query",
       description:
-        "dApps use Solpass SDK/API to query the score and assess human validity.",
+        "dApps use Solpass API to query the score and assess human validity.",
     },
   ];
 

@@ -6,6 +6,8 @@ import Quest from "./pages/user/quests/Quest";
 import QuestCategories from "./pages/user/categories/QuestCategories";
 import Home from "./pages/homepage/Home";
 import { Route, Routes } from "react-router-dom";
+import Signup from "./pages/developer/auth/Signup";
+import Login from "./pages/developer/auth/Login";
 
 export default function RouteHandler() {
   return (
@@ -17,6 +19,8 @@ export default function RouteHandler() {
       <Route path="/user/categories-quest" element={<QuestCategories />} />
 
       {/* Developer Route */}
+      <Route path="/auth/developer/login" element={<Login />} />
+      <Route path="/auth/developer/signup" element={<Signup />} />
       <Route path="/dev/dashboard" element={<DevDashboard />} />
       <Route path="/dev/endpoints" element={<Endpoints />} />
       <Route path="/dev/api-key" element={<ApiKey />} />

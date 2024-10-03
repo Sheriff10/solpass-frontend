@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { RxDashboard } from "react-icons/rx";
 import { AiOutlineApi } from "react-icons/ai";
 
@@ -8,9 +8,18 @@ import { MdOutlineKey } from "react-icons/md";
 import Support from "./Support";
 import { GiLifeSupport } from "react-icons/gi";
 import { FaBookOpen } from "react-icons/fa6";
+import { getCookie, removeCookie } from "../utils/cookies";
+import { FaSignOutAlt } from "react-icons/fa";
 
 export default function DevLayout({ children }) {
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
+
+  // check if login
+  const devToken = getCookie("dev-token");
+  useEffect(() => {
+    if (!devToken) return navigate("/auth/developer/login");
+  }, []);
   const link = [
     {
       name: "Dashboard",
@@ -40,6 +49,11 @@ export default function DevLayout({ children }) {
       icon: <FaBookOpen />,
     },
   ];
+
+  const logOutHandler = () => {
+    removeCookie("dev-token");
+    navigate("/");
+  };
   return (
     <>
       <div className="fixed hidden lg:block top-0 bottom-0 right-0 left-0">
@@ -75,6 +89,13 @@ export default function DevLayout({ children }) {
                     {i.icon} {i.name}
                   </NavLink>
                 ))}
+
+                <a
+                  className="rounded-lg p-2 flex gap-2 items-center text-sm text-red-400 hover:scale-[1.1] transition-all"
+                  onClick={logOutHandler}
+                >
+                  <FaSignOutAlt /> Logout
+                </a>
               </div>
             </div>
           </div>

@@ -1,16 +1,20 @@
 import axios from "axios";
-
-// Create axios instance with credentials and headers
-const axiosInstance = axios.create({
-  withCredentials: true, // Ensure cookies/credentials are sent
-  headers: {
-    "Content-Type": "application/json", // Default content type
-  },
-});
+import { getCookie, removeCookie } from "./cookies";
 
 // Utility function to handle API requests
-const apiRequest = async (url, method = "GET", data = null) => {
+const apiRequest = async (url, method = "GET", data = null, isDev = false) => {
   try {
+    // Create axios instance with credentials and headers
+    const axiosInstance = axios.create({
+      withCredentials: true, // Ensure cookies/credentials are sent
+      headers: {
+        "Content-Type": "application/json", // Default content type
+        authorization: `Bearer ${getCookie("access-token")}`,
+        "dev-authorization": `Bearer ${getCookie("dev-token")}`,
+      },
+    });
+
+    // console.log(getCookie("dev-token"));
     const response = await axiosInstance({
       url,
       method,
@@ -26,7 +30,10 @@ const apiRequest = async (url, method = "GET", data = null) => {
       const { status, data } = error.response;
 
       if (status === 403 || status === 401) {
-        window.location.href = "/"; // Handle auth errors
+        localStorage.removeItem("hasRedirected");
+        removeCookie("access-token");
+        removeCookie("dev-token");
+        window.location.href = isDev ? "/auth/developer/login" : "/"; // Handle auth errors
       }
 
       // Handle specific errors from the API
