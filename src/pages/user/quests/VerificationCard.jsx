@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import {
   grayBtnSmClass,
@@ -6,13 +6,10 @@ import {
   whiteBtnSmClass,
 } from "../../../ui/buttonStyle";
 import { FaCopy } from "react-icons/fa6";
-import { BsCircle, BsLink } from "react-icons/bs";
+import { BsLink } from "react-icons/bs";
 import QRCode from "react-qr-code";
 import { GiCancel } from "react-icons/gi";
-import {
-  statusUpdate,
-  verifyVerification,
-} from "../../../services/api-service";
+import { verifyVerification } from "../../../services/api-service";
 import axios from "axios";
 import StatusHolder from "../../../ui/user/StatusHolder";
 import Loader from "../../../ui/Loader";
@@ -25,19 +22,16 @@ export default function VerificationCard({
   setShow,
 }) {
   const [open, setOpen] = useState(true);
-  const cancelButtonRef = useRef(null);
   const [loading, setLoading] = useState(false);
 
   const [statusNumber, setStatusNumber] = useState(0);
 
   // fetch status
   const handleVerificationStatus = async () => {
-    console.log(statusLink);
     // if (statusNumber === 4) return;
     try {
       // await statusUpdate(statusLink);
       const response = await axios.get(statusLink);
-      console.log(response.data.session);
 
       const status = response.data.session.statusV2;
       // alert(status);

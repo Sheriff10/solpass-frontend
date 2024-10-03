@@ -23,8 +23,7 @@ export default function ApiKey() {
     try {
       setLoading(true);
       const name = generate();
-      const response = await createApiKey(name);
-      console.log(response);
+      await createApiKey(name);
 
       queryClient.invalidateQueries([["apikey"]]);
     } catch (error) {

@@ -27,8 +27,7 @@ const Signup = () => {
     }
     try {
       setLoading(true);
-      const response = await signupDev(formData);
-      console.log(response);
+      await signupDev(formData);
       navigate("/auth/developer/login");
     } catch (error) {
       alert(error.message);

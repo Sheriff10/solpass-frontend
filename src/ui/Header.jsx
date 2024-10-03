@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { greenBtnSmClass } from "./buttonStyle";
 import { HiOutlineMenuAlt1 } from "react-icons/hi"; // Menu Icon
 import { IoClose } from "react-icons/io5"; // Close Icon

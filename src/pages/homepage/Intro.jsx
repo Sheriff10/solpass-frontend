@@ -5,14 +5,12 @@ import {
   WalletMultiButton,
 } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { useMutation } from "@tanstack/react-query";
 import { loginAdress } from "../../services/api-service";
-import Loader from "../../ui/Loader";
 import { useNavigate } from "react-router-dom";
 import { setCookie } from "../../utils/cookies";
 export default function Intro() {
   const { setVisible } = useWalletModal();
-  const { publicKey, connected, disconnect } = useWallet();
+  const { publicKey, connected } = useWallet();
 
   const navigate = useNavigate();
 
@@ -26,9 +24,7 @@ export default function Intro() {
 
   const authorize = async () => {
     try {
-      console.log(`Public Key: ${publicKey.toString()}`);
       const response = await loginAdress(publicKey.toString());
-      console.log("Login Response:", response);
       setCookie("access-token", response.accessToken);
       setCookie("address", publicKey.toString());
       localStorage.setItem("hasRedirected", true);

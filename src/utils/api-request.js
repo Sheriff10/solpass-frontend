@@ -14,7 +14,6 @@ const apiRequest = async (url, method = "GET", data = null, isDev = false) => {
       },
     });
 
-    // console.log(getCookie("dev-token"));
     const response = await axiosInstance({
       url,
       method,

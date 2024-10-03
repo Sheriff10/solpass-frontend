@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import StatsCard from "./StatsCard";
 import QuestCard from "./QuestCard";
 import UserLayout from "../../../ui/user/UserLayout";
-import {
-  addressStats,
-  categoryQuest,
-  verificationLink,
-} from "../../../services/api-service";
+import { addressStats, categoryQuest } from "../../../services/api-service";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { FaTriangleExclamation } from "react-icons/fa6";
@@ -23,26 +19,17 @@ export default function Quest() {
   const [statusLink, setStatusLink] = useState("");
   const [description, setDescription] = useState("");
 
-  const {
-    data: questData = [],
-    error: questError,
-    isLoading: questLoading,
-  } = useQuery({
+  const { data: questData = [] } = useQuery({
     queryKey: ["fetch-quest", categoryId],
     queryFn: async () => await categoryQuest(categoryId),
   });
 
   const address = getCookie("address");
-  const {
-    data: stats,
-    error,
-    isLoading,
-  } = useQuery({
+  const { data: stats } = useQuery({
     queryKey: ["address-stats", address],
     queryFn: async () => await addressStats(address),
   });
 
-  console.log(questData);
   return (
     <UserLayout>
       <div className="wrap">

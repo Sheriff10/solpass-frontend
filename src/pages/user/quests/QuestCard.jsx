@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { verificationLink } from "../../../services/api-service";
-import { getCookie } from "../../../utils/cookies";
-import { useQuery } from "@tanstack/react-query";
 import { BarLoader } from "react-spinners";
-import VerificationCard from "./VerificationCard";
 
 export default function QuestCard({
   name,
@@ -15,7 +12,6 @@ export default function QuestCard({
   setShow,
   completed_quest,
 }) {
-  const address = getCookie("address");
   const [loading, setLoading] = useState(false);
 
   const verificationHandler = async () => {
@@ -25,7 +21,6 @@ export default function QuestCard({
       setLink(data.requestUrl);
       setStatusLink(data.statusUrl);
       setDescription(name);
-      console.log(data);
       setShow(true);
     } catch (error) {
       console.log(error);

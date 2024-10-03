@@ -25,7 +25,7 @@ export default function UserHeader() {
     <>
       <div className="header px-8 py-8 flex justify-between items-center md:border-b border-white border-opacity-15">
         <div className="wrap flex gap-10 items-center">
-          <img src="/logo.png" alt="Solpass" />
+          <img src="/logo.png" alt="Solpass" className="w-[50px] " />
           <div className="wrap md:flex gap-3 hidden">
             {category.map((i, index) => (
               <NavLink

@@ -5,7 +5,7 @@ import { getCookie } from "../../../utils/cookies";
 
 export default function StatsCard({ point, completed_quest, total_quest }) {
   const address = getCookie("address");
-  const { data, error, isLoading } = useQuery({
+  const { data } = useQuery({
     queryKey: ["address-stats", address],
     queryFn: async () => await addressStats(),
   });

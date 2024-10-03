@@ -8,11 +8,7 @@ import { getCookie } from "../../../utils/cookies";
 
 export default function QuestCategories() {
   const address = getCookie("address");
-  const {
-    data: categoryData = [],
-    error: categoryError,
-    isLoading: categoryLoading,
-  } = useQuery({
+  const { data: categoryData = [] } = useQuery({
     queryKey: ["fetch-category-stat", address],
     queryFn: async () => await categoryStats(),
   });

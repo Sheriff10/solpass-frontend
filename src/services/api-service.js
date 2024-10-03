@@ -12,7 +12,6 @@ export const loginAdress = async (address) => {
 
 export const addressStats = async (address) => {
   const response = await apiRequest(`${BASE_URL}/address/stats`, "GET");
-  console.log(response);
   return response.message;
 };
 
@@ -29,7 +28,6 @@ export const categoryQuest = async (id) => {
     `${BASE_URL}/address/category/${id}`,
     "GET"
   );
-  console.log(response);
   return response.message;
 };
 
@@ -37,7 +35,6 @@ export const verificationLink = async (questName) => {
   const response = await apiRequest(`${BASE_URL}/verification`, "POST", {
     questType: questName,
   });
-  console.log(response);
   return response.message;
 };
 
@@ -45,7 +42,6 @@ export const verifyVerification = async (statusUrl) => {
   const response = await apiRequest(`${BASE_URL}/callback`, "POST", {
     statusUrl,
   });
-  console.log(response);
   return response.message;
 };
 
@@ -73,25 +69,21 @@ export const signupDev = async (credential) => {
 };
 
 export const getApiKey = async () => {
-  console.log("called appikey");
   const response = await apiRequest(
     `${BASE_URL}/v1/devloper/apikey/get`,
     "GET",
     null,
     true
   );
-  console.log(response);
   return response;
 };
 
 export const createApiKey = async (name) => {
-  console.log("called appikey");
   const response = await apiRequest(
     `${BASE_URL}/v1/devloper/apikey/create`,
     "POST",
     { name },
     true
   );
-  console.log(response);
   return response;
 };

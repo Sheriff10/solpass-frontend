@@ -26,10 +26,8 @@ const Login = () => {
     try {
       setLoading(true);
       const response = await loginDev(formData);
-      console.log(response);
 
       setCookie("dev-token", response.accessToken);
-      console.log(response.accessToken);
       navigate("/dev/dashboard");
     } catch (error) {
       setLoginError(true);
