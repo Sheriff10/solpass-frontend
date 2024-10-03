@@ -10,17 +10,14 @@ export const loginAdress = async (address) => {
 };
 
 export const addressStats = async (address) => {
-  const response = await apiRequest(
-    `${BASE_URL}/address/stats/${address}`,
-    "GET"
-  );
+  const response = await apiRequest(`${BASE_URL}/address/stats`, "GET");
   console.log(response);
   return response.message;
 };
 
 export const categoryStats = async (address) => {
   const response = await apiRequest(
-    `${BASE_URL}/address/category-stats/${address}`,
+    `${BASE_URL}/address/category-stats`,
     "GET"
   );
   return response.message;
@@ -35,9 +32,8 @@ export const categoryQuest = async (id) => {
   return response.message;
 };
 
-export const verificationLink = async (address, questName) => {
+export const verificationLink = async (questName) => {
   const response = await apiRequest(`${BASE_URL}/verification`, "POST", {
-    address,
     questType: questName,
   });
   console.log(response);
@@ -50,4 +46,51 @@ export const verifyVerification = async (statusUrl) => {
   });
   console.log(response);
   return response.message;
+};
+
+/**
+ * DEVELOPER API SERVICE SECTION
+ */
+
+export const loginDev = async (credential) => {
+  const response = await apiRequest(
+    `${BASE_URL}/auth/dev/login`,
+    "POST",
+    credential,
+    true
+  );
+  return response.message;
+};
+export const signupDev = async (credential) => {
+  const response = await apiRequest(
+    `${BASE_URL}/auth/dev/signup`,
+    "POST",
+    credential,
+    true
+  );
+  return response.message;
+};
+
+export const getApiKey = async () => {
+  console.log("called appikey");
+  const response = await apiRequest(
+    `${BASE_URL}/v1/devloper/apikey/get`,
+    "GET",
+    null,
+    true
+  );
+  console.log(response);
+  return response;
+};
+
+export const createApiKey = async (name) => {
+  console.log("called appikey");
+  const response = await apiRequest(
+    `${BASE_URL}/v1/devloper/apikey/create`,
+    "POST",
+    { name },
+    true
+  );
+  console.log(response);
+  return response;
 };

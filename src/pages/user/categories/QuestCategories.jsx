@@ -14,7 +14,7 @@ export default function QuestCategories() {
     isLoading: categoryLoading,
   } = useQuery({
     queryKey: ["fetch-category-stat", address],
-    queryFn: async () => await categoryStats(address),
+    queryFn: async () => await categoryStats(),
   });
 
   return (

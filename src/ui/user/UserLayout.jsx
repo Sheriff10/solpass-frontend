@@ -1,14 +1,22 @@
 import React from "react";
 import UserHeader from "./UserHeader";
-import { getCookie } from "../../utils/cookies";
+import { getCookie, removeCookie } from "../../utils/cookies";
 import { useNavigate } from "react-router-dom";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 export default function UserLayout({ children }) {
   const navigate = useNavigate();
   const loggedIn = getCookie("access-token");
   const address = getCookie("address");
   // alert(address);
-  if (!loggedIn || !address) navigate("/");
+
+  const { connected } = useWallet();
+  if (!loggedIn || !address || !connected) {
+    removeCookie("access-token");
+    removeCookie("address");
+    localStorage.removeItem("hasRedirected");
+    navigate("/");
+  }
 
   return (
     <div className="wrap">

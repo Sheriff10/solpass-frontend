@@ -1,8 +1,14 @@
 import React from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import SensitiveText from "./SensitiveText";
+import { format } from "date-fns";
 
 export default function KeyTable({ data }) {
+  const formatDate = (date) => {
+    // Example format: 'MMMM dd, yyyy hh:mm:ss a'
+    const formattedDate = format(date, "MMM dd yyyy");
+    return formattedDate;
+  };
   return (
     <table className="w-full text-center  border-separate border-spacing-y-4">
       <thead>
@@ -15,14 +21,14 @@ export default function KeyTable({ data }) {
         </tr>
       </thead>
       <tbody>
-        {data.map((i, index) => (
+        {data?.map((i, index) => (
           <tr key={index}>
             <td>{index + 1}</td>
-            <td className="min-w-[150px]">Micky phone</td>
+            <td className="min-w-[150px]">{i.name}</td>
             <td className="min-w-[250px]">
-              <SensitiveText />
+              <SensitiveText text={i.key} />
             </td>
-            <td className="min-w-[150px]">25th Jan. 2024</td>
+            <td className="min-w-[150px]">{formatDate(i.createTime)}</td>
             <td>
               <div className="flex justify-center">
                 <FaTrashAlt className="text-red-500" />
