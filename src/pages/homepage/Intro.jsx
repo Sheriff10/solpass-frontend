@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { greenBtnSmClass } from "../../ui/buttonStyle";
 import {
   useWalletModal,
@@ -8,34 +8,43 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { loginAdress } from "../../services/api-service";
 import { useNavigate } from "react-router-dom";
 import { setCookie } from "../../utils/cookies";
+import Loader from "../../ui/Loader";
 export default function Intro() {
   const { setVisible } = useWalletModal();
   const { publicKey, connected } = useWallet();
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const hasRedirected = localStorage.getItem("hasRedirected");
-    if (hasRedirected) return;
     if (connected && publicKey) {
       authorize();
     }
   }, [connected, publicKey]);
 
   const authorize = async () => {
+    const hasRedirected = sessionStorage.getItem("hasRedirected");
+
     try {
+      setIsLoading(true);
       const response = await loginAdress(publicKey.toString());
       setCookie("access-token", response.accessToken);
       setCookie("address", publicKey.toString());
-      localStorage.setItem("hasRedirected", true);
-      navigate("/user/categories-quest");
+
+      if (!hasRedirected) {
+        navigate("/user/categories-quest");
+        sessionStorage.setItem("hasRedirected", true);
+      }
     } catch (error) {
       console.error("Login error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="wrap py-56  px-8 relative overflow-clip">
+      {isLoading && <Loader />}
       <img
         src="/asset/Line.png"
         className="absolute w-full z-[-1] top-0 left-0 right-0 lg:hidden"
@@ -72,10 +81,8 @@ export default function Intro() {
               Connect Wallet
             </button>
           )}
-
-          <img src="/asset/user.png" alt="users" />
           <span className="text-xs text text-white text-opacity-65">
-            Verify and start <br /> claiming with people
+            Start verifying Claim <br /> Point to prove your Humanity
           </span>
         </div>
       </div>

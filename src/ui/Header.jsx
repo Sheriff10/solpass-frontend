@@ -4,6 +4,7 @@ import { greenBtnSmClass } from "./buttonStyle";
 import { HiOutlineMenuAlt1 } from "react-icons/hi"; // Menu Icon
 import { IoClose } from "react-icons/io5"; // Close Icon
 import { LiaExternalLinkAltSolid } from "react-icons/lia";
+import { getCookie } from "../utils/cookies";
 
 const Header = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -19,17 +20,21 @@ const Header = () => {
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
+  const loggedIn = getCookie("access-token");
   const navigate = useNavigate();
 
   return (
     <header className="fixed z-[100] w-full flex items-center backdrop-blur-md bg-black bg-opacity-15 justify-between px-8 py-5 mb-4">
-      <div>
+      <div className="flex gap-3 items-center ">
         <img
           src={"/logo.png"}
           alt="name"
-          className="w-[50px] "
+          className="w-[20px] "
           onClick={() => navigate("/")}
-        />
+        />{" "}
+        <h1 className="text-xl font-bold">
+          Sol<span className="text-primary-green">pass</span>
+        </h1>
       </div>
 
       {/* Desktop Navigation */}
@@ -47,14 +52,21 @@ const Header = () => {
 
       {/* Documentation Button */}
       <div className="hidden lg:flex gap-2 rounded-lg">
-        <span
-          className="text-primary-green bg-primary-green bg-opacity-15 p-2 rounded-sm cursor-pointer"
-          onClick={() => navigate("/user/categories-quest")}
-        >
-          <LiaExternalLinkAltSolid />
-        </span>
+        {loggedIn && (
+          <span
+            className="text-primary-green bg-primary-green bg-opacity-15 p-2 rounded-sm cursor-pointer"
+            onClick={() => navigate("/user/categories-quest")}
+          >
+            <LiaExternalLinkAltSolid />
+          </span>
+        )}
 
-        <button className={greenBtnSmClass}>Documentation</button>
+        <button
+          className={greenBtnSmClass}
+          onClick={() => navigate("/dev/dashboard")}
+        >
+          Developer
+        </button>
       </div>
 
       {/* Mobile Menu Icon */}
@@ -72,7 +84,7 @@ const Header = () => {
         }`}
       >
         <div className="flex justify-between items-center p-5 border-b border-gray-700">
-          <img src={"/logo.png"} alt="name" />
+          {/* <img src={"/logo.png"} alt="name" className="w-[]" /> */}
           <IoClose
             className="text-white text-3xl cursor-pointer"
             onClick={toggleMobileMenu}
@@ -99,8 +111,11 @@ const Header = () => {
           >
             <LiaExternalLinkAltSolid />
           </span>
-          <button className={greenBtnSmClass} onClick={toggleMobileMenu}>
-            Documentation
+          <button
+            className={greenBtnSmClass}
+            onClick={() => navigate("/dev/dashboard")}
+          >
+            Developer
           </button>
         </div>
       </div>

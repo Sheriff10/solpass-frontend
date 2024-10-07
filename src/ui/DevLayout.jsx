@@ -40,12 +40,12 @@ export default function DevLayout({ children }) {
   const link2 = [
     {
       name: "Support",
-      link: "https://somewhere.com",
+      link: "#",
       icon: <GiLifeSupport />,
     },
     {
       name: "Documentation",
-      link: "/admin/events",
+      link: "#",
       icon: <FaBookOpen />,
     },
   ];
@@ -81,13 +81,13 @@ export default function DevLayout({ children }) {
               </div>
               <div className="px-8 py-5 flex flex-col gap-5 border-t border-gray-800">
                 {link2.map((i, index) => (
-                  <NavLink
+                  <a
                     to={i.link}
                     key={index}
                     className="rounded-lg p-2 flex gap-2 items-center text-sm text-gray-400 hover:scale-[1.1] transition-all"
                   >
                     {i.icon} {i.name}
-                  </NavLink>
+                  </a>
                 ))}
 
                 <a

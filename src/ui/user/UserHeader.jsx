@@ -26,12 +26,17 @@ export default function UserHeader() {
     <>
       <div className="header px-8 py-8 flex justify-between items-center md:border-b border-white border-opacity-15">
         <div className="wrap flex gap-10 items-center">
-          <img
-            src="/logo.png"
-            alt="Solpass"
-            className="w-[50px] "
-            onClick={() => navigate("/")}
-          />
+          <div className="flex gap-3 items-center ">
+            <img
+              src={"/logo.png"}
+              alt="name"
+              className="w-[20px] "
+              onClick={() => navigate("/")}
+            />{" "}
+            <h1 className="text-xl font-bold">
+              Sol<span className="text-primary-green">pass</span>
+            </h1>
+          </div>
           <div className="wrap md:flex gap-3 hidden">
             {category.map((i, index) => (
               <NavLink

@@ -29,7 +29,7 @@ const apiRequest = async (url, method = "GET", data = null, isDev = false) => {
       const { status, data } = error.response;
 
       if (status === 403 || status === 401) {
-        localStorage.removeItem("hasRedirected");
+        sessionStorage.removeItem("hasRedirected");
         removeCookie("access-token");
         removeCookie("dev-token");
         window.location.href = isDev ? "/auth/developer/login" : "/"; // Handle auth errors

@@ -14,7 +14,7 @@ export default function UserLayout({ children }) {
   if (!loggedIn || !address || !connected) {
     removeCookie("access-token");
     removeCookie("address");
-    localStorage.removeItem("hasRedirected");
+    sessionStorage.removeItem("hasRedirected");
     navigate("/");
   }
 
