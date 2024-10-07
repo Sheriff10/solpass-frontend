@@ -1,5 +1,6 @@
 import React from "react";
 import { FaCopy } from "react-icons/fa";
+import copyToClipboard from "../../../utils/copy";
 
 export default function UrlCard({ description, code, example }) {
   return (
@@ -16,9 +17,15 @@ export default function UrlCard({ description, code, example }) {
       <br />
       <div className="wrap relative text-gray-400  border border-gray-400 rounded-xl p-4 mt-3 overflow-hidden text-ellipsis pr-10">
         <span className="absolute right-[20px] bg-black">
-          <FaCopy />
+          <FaCopy
+            onClick={() =>
+              copyToClipboard(
+                `https://solpass-server.onrender.com/v1/devloper/${example}`
+              )
+            }
+          />
         </span>
-        <span>https://api.solpass.io/v1{example}</span>
+        <span>https://solpass-server.onrender.com/v1/devloper/{example}</span>
       </div>
     </div>
   );

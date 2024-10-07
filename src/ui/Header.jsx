@@ -24,7 +24,12 @@ const Header = () => {
   return (
     <header className="fixed z-[100] w-full flex items-center backdrop-blur-md bg-black bg-opacity-15 justify-between px-8 py-5 mb-4">
       <div>
-        <img src={"/logo.png"} alt="name" className="w-[50px] " />
+        <img
+          src={"/logo.png"}
+          alt="name"
+          className="w-[50px] "
+          onClick={() => navigate("/")}
+        />
       </div>
 
       {/* Desktop Navigation */}

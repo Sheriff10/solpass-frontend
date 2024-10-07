@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { FaTriangleExclamation } from "react-icons/fa6";
 import VerificationCard from "./VerificationCard";
 import { getCookie } from "../../../utils/cookies";
+import Loader from "../../../ui/Loader";
 
 export default function Quest() {
   const [open, setOpen] = useState(false);
@@ -19,7 +20,7 @@ export default function Quest() {
   const [statusLink, setStatusLink] = useState("");
   const [description, setDescription] = useState("");
 
-  const { data: questData = [] } = useQuery({
+  const { data: questData = [], isLoading } = useQuery({
     queryKey: ["fetch-quest", categoryId],
     queryFn: async () => await categoryQuest(categoryId),
   });
@@ -44,6 +45,7 @@ export default function Quest() {
             open={open}
           />
         )}
+        {isLoading && <Loader />}
         <div className="wrap p-8">
           <h1 className="font-bold text-3xl">
             {firstPart} <span className="text-primary-green">{secondPart}</span>

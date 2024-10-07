@@ -5,6 +5,7 @@ function copyToClipboard(text) {
   input.select();
   document.execCommand("copy");
   document.body.removeChild(input);
+  alert("Copied!");
 }
 
 module.exports = copyToClipboard;

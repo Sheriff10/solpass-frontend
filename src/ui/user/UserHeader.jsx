@@ -1,6 +1,6 @@
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function UserHeader() {
   const category = [
@@ -21,11 +21,17 @@ export default function UserHeader() {
       link: "/home",
     },
   ];
+  const navigate = useNavigate();
   return (
     <>
       <div className="header px-8 py-8 flex justify-between items-center md:border-b border-white border-opacity-15">
         <div className="wrap flex gap-10 items-center">
-          <img src="/logo.png" alt="Solpass" className="w-[50px] " />
+          <img
+            src="/logo.png"
+            alt="Solpass"
+            className="w-[50px] "
+            onClick={() => navigate("/")}
+          />
           <div className="wrap md:flex gap-3 hidden">
             {category.map((i, index) => (
               <NavLink

@@ -5,10 +5,11 @@ import UserLayout from "../../../ui/user/UserLayout";
 import { useQuery } from "@tanstack/react-query";
 import { categoryStats } from "../../../services/api-service";
 import { getCookie } from "../../../utils/cookies";
+import Loader from "../../../ui/Loader";
 
 export default function QuestCategories() {
   const address = getCookie("address");
-  const { data: categoryData = [] } = useQuery({
+  const { data: categoryData = [], isLoading } = useQuery({
     queryKey: ["fetch-category-stat", address],
     queryFn: async () => await categoryStats(),
   });
@@ -17,6 +18,7 @@ export default function QuestCategories() {
     <UserLayout>
       <div className="wrap">
         <StatsCard />
+        {isLoading && <Loader />}
 
         <div className="p-8 mt-10">
           <div className="header text-center mb-10">
