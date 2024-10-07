@@ -20,12 +20,12 @@ export default function UrlCard({ description, code, example }) {
           <FaCopy
             onClick={() =>
               copyToClipboard(
-                `https://solpass-server.onrender.com/v1/devloper/${example}`
+                `https://solpass-server.onrender.com/v1/devloper${example}`
               )
             }
           />
         </span>
-        <span>https://solpass-server.onrender.com/v1/devloper/{example}</span>
+        <span>https://solpass-server.onrender.com/v1/devloper{example}</span>
       </div>
     </div>
   );
