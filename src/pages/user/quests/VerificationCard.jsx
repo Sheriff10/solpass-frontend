@@ -114,10 +114,23 @@ export default function VerificationCard({
                 {loading && <Loader />}
                 <div className="bg-secondary-light p-8 py-10 flex flex-col">
                   <div className="grid lg:grid-cols-2 gap-5 items-center px-3">
-                    <div className="qr-wrapper flex">
+                    <div className="qr-wrapper flex flex-col items-center justify-center">
                       <div className="wrap bg-white p-3 rounded-xl">
                         <QRCode value={verificationLink} />
                       </div>
+                      <span className="text-xs px-3 mt-3 text-center">
+                        Download Reclaim verifer from{" "}
+                        <a
+                          href="https://apps.apple.com/ng/app/reclaim-verifier/id6503247508"
+                          className="text-primary-green"
+                        >
+                          App Store
+                        </a>{" "}
+                        or{" "}
+                        <a href="#" className="text-primary-green">
+                          Google Play store
+                        </a>
+                      </span>
                     </div>
                     <div className="wrap">
                       <div className="h1 font-bold text-primary-green text-lg mb-3">
