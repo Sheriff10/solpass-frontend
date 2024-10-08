@@ -24,7 +24,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <header className="fixed z-[100] w-full flex items-center backdrop-blur-md bg-black bg-opacity-15 justify-between px-8 py-5 mb-4">
+    <header className="fixed top-0 right-0 left-0 z-[100] w-full flex items-center backdrop-blur-md bg-black bg-opacity-15 justify-between px-8 py-5 mb-4">
       <div className="flex gap-3 items-center ">
         <img
           src={"/logo.png"}
